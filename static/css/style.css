@@ -158,6 +158,15 @@ body {
 \*-----------------------------------*/
 
 .container { padding-inline: 15px; }
+.logo img {
+  max-width: 550%; /* Make the logo responsive */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.logo img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
 
 .section { padding-block: var(--section-padding); }
 
@@ -285,14 +294,15 @@ body {
   #HEADER
 \*-----------------------------------*/
 
-.header .btn { display: none; }
+
+/**.header .btn { display: none; }
 
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--white);
+  background-color: #fafafd;
   padding-block: 12px;
   box-shadow: var(--shadow-1);
   z-index: 4;
@@ -322,7 +332,7 @@ body {
   position: absolute;
   top: -10px;
   right: -10px;
-  background-color: var(--kappel);
+  background-color:#333;
   color: var(--white);
   font-family: var(--ff-league_spartan);
   font-size: var(--fs-6);
@@ -390,7 +400,7 @@ body {
 .overlay.active {
   opacity: 1;
   pointer-events: all;
-}
+
 
 /*-----------------------------------*\
   #HERO
@@ -436,44 +446,107 @@ body {
   #CATEGORY
 \*-----------------------------------*/
 
-.category .section-subtitle { color: var(--radical-red); }
-
-.category .section-title { --color: var(--kappel); }
-
-.category .section-text { margin-block-end: 40px; }
-
-.category-card {
-  padding: 50px 30px;
+#feature{
+  width: 100%;
+  padding: 70px 0;
+}
+.welcome{
   text-align: center;
-  border-radius: var(--radius-5);
-}
+  padding-bottom: 70px;
 
-.category-card .card-icon {
-  background-color: hsla(var(--color), 0.1);
-  width: 80px;
-  height: 80px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--radius-circle);
-  margin-inline: auto;
-  margin-block-end: 30px;
 }
-
-.category-card .card-text {
-  color: var(--eerie-black-1);
-  font-size: var(--fs-5);
-  margin-block: 15px 25px;
+.welcome p{
+  margin: auto;
+  font-size: 90px;
+  color: #0b54f1cf;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
 }
-
-.category-card .card-badge {
-  background-color: hsla(var(--color), 0.1);
-  color: hsl(var(--color));
-  font-size: var(--fs-5);
-  font-weight: var(--fw-500);
-  padding: 2px 18px;
-  max-width: max-content;
-  margin-inline: auto;
-  border-radius: var(--radius-5);
+.welcome p::after{
+  content: '';
+  width: 50px;
+  height: 35px;
+  background: linear-gradient(#112c66,#fff);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  z-index: -1;
+  transform: rotate(10deg);
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
+.welcome h1{
+  font-size: 70px;
+}
+.service-box{
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto;
+}
+.single-service{
+  flex-basis: 30%;
+  text-align: center;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  color: #100101;
+  position: relative;
+  box-sizing: border-box;
+}
+.single-service img{
+  width: 100%;
+  height: 350px; /* Set a fixed height */
+  object-fit: cover; /* Ensures the image maintains its aspect ratio and fills the area */
+  border-radius: 15px;
+}
+.overlay{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  border-radius: 7px;
+  cursor: pointer;
+  background: linear-gradient(rgba(0,0,0,0.5),#112c66);
+  opacity: 0;
+  transition: 1s;
+}
+.single-service:hover .overlay{
+  opacity: 1;
+}
+.service-desc{
+  width: 80%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: 1s;
+}
+hr{
+  background: #fff;
+  height: 2px;
+  border: 0;
+  margin: 15px auto;
+  width: 60%;
+}
+.single-service:hover .service-desc{
+  bottom: 40%;
+  opacity: 1;
+}
+@media screen and (max-width: 770px){
+  .single-service{
+      flex-basis: 100%;
+      margin-bottom: 30px;
+  }
+  .hr{
+      margin: 5px auto;
+  }
+  .single-service:hover .service-desc{
+      bottom: 25% !important;
+  }
 }
 
 
@@ -490,7 +563,7 @@ body {
 
 .about .container {
   display: grid;
-  gap: 30px;
+  gap: 50px;
 }
 
 .about-banner {
@@ -532,7 +605,7 @@ body {
 
 .about-item ion-icon {
   color: var(--selective-yellow);
-  font-size: 20px;
+  font-size: 0px;
   --ionicon-stroke-width: 50px;
 }
 
@@ -545,117 +618,123 @@ body {
   #Testimonials
 \*-----------------------------------*/
 
-.course { background-color: var(--isabelline); }
-
-.course-card {
+.testimonials {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #f9f9f9;
   position: relative;
-  background-color: var(--white);
-  border-radius: var(--radius-5);
+}
+.testimonial-container{
+  width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
-.course-card .img-cover { transition: var(--transition-2); }
-
-.course-card:is(:hover, :focus-within) .img-cover { transform: scale(1.1); }
-
-.course-card :is(.abs-badge, .badge) {
-  font-family: var(--ff-league_spartan);
-  border-radius: var(--radius-3);
+.testimonials h1 {
+  font-size: 2.5em;
+  color: #333;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
 }
 
-.course-card .abs-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: var(--selective-yellow);
-  color: var(--white);
+/* Testimonial Slider Styling */
+.testimonial-slider {
   display: flex;
-  align-items: center;
-  gap: 5px;
-  line-height: 1;
-  padding: 6px 8px;
-  padding-block-end: 3px;
+  position: relative;
+  width: calc(11 * 2 * 50vw);
+  justify-content: center;
+  animation: slide 60s infinite;
 }
 
-.course-card .abs-badge ion-icon {
+.testimonial-col {
+  min-width: 50vw; /* Adjust the box size */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 0 15px;
+  transition: transform 0.5s ease-in-out;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Testimonial Image */
+.testimonial-col img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+/* Testimonial Text */
+.testimonial-col div {
+  text-align: center;
+}
+
+.testimonial-col p {
+  font-size: 1em;
+  line-height: 1.5em;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.testimonial-col h3 {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Star Ratings */
+.testimonial-col i {
+  color: #f39c12;
   font-size: 18px;
-  margin-block-end: 5px;
-  --ionicon-stroke-width: 50px;
 }
 
-.course-card .card-content { padding: 25px; }
-
-.course-card .badge {
-  background-color: var(--kappel_15);
-  max-width: max-content;
-  color: var(--kappel);
-  line-height: 25px;
-  padding-inline: 10px;
+/* Sliding Animation */
+@keyframes slide {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(calc(-11 * 50vw)); /* Slide by the width of original items */
+  }
+}
+.testimonial-slider {
+  animation: slide 60s linear infinite; /* Slow, continuous sliding */
 }
 
-.course-card .card-title {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  margin-block: 15px 8px;
-  transition: var(--transition-1);
-}
 
-.course-card .card-title:is(:hover, :focus) { color: var(--kappel); }
+/* Responsive for smaller screens */
+@media (max-width: 480px) {
+  .testimonials {
+    padding: 20px 0;
+  }
 
-.course-card :is(.wrapper, .rating-wrapper, .card-meta-list, .card-meta-item) {
-  display: flex;
-  align-items: center;
-}
+  .testimonials h1 {
+    font-size: 1.8em; /* Further reduce heading size */
+  }
 
-.course-card .wrapper { gap: 10px; }
+  .testimonial-col {
+    min-width: 95vw; /* Full width with slight margin */
+    padding: 10px; /* Even less padding */
+    margin: 0 5px; /* Narrower margin */
+  }
 
-.course-card .rating-wrapper { gap: 3px; }
+  .testimonial-col p {
+    font-size: 0.8em; /* Further reduce font size */
+    line-height: 1.3em;
+  }
 
-.course-card .rating-wrapper ion-icon { color: var(--selective-yellow); }
+  .testimonial-col h3 {
+    font-size: 0.9em; /* Smaller font size for names */
+  }
 
-.course-card .rating-text {
-  color: var(--eerie-black-1);
-  font-size: var(--fs-6);
-  font-weight: var(--fw-500);
-}
-
-.course-card .price {
-  color: var(--radical-red);
-  font-family: var(--ff-league_spartan);
-  font-size: var(--fs-4);
-  font-weight: var(--fw-600);
-  margin-block: 8px 15px;
-}
-
-.course-card .card-meta-list { flex-wrap: wrap; }
-
-.course-card .card-meta-item {
-  position: relative;
-  gap: 5px;
-}
-
-.course-card .card-meta-item:not(:last-child)::after {
-  content: "|";
-  display: inline-block;
-  color: var(--platinum);
-  padding-inline: 10px;
-}
-
-.course-card .card-meta-item ion-icon {
-  color: var(--quick-silver);
-  --ionicon-stroke-width: 50px;
-}
-
-.course-card .card-meta-item .span {
-  color: var(--eerie-black-1);
-  font-size: var(--fs-7);
-}
-
-.course .btn {
-  margin-inline: auto;
-  margin-block-start: 60px;
+  .testimonial-slider {
+    width: 1000%; /* Ensure enough width for smooth sliding */
+  }
 }
 
 
@@ -665,40 +744,74 @@ body {
 \*-----------------------------------*/
 
 .video {
-  background-size: contain;
-  background-position: center top;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+}
+
+.video-card {
+  position: relative;
+  max-width: 970px;
+  width: 100%;
 }
 
 .video-banner {
   position: relative;
-  border-top-right-radius: 80px;
-  border-bottom-left-radius: 120px;
+  width: 100%; /* Adjust as needed */
+  height: 500px; /* Set a specific height for the banner */
+  overflow: hidden; /* Ensure any overflow is hidden */
 }
 
-.video .play-btn {
+.video-banner .img-cover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers the image perfectly */
+  width: auto; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
+
+  /* Optional: Ensure the image covers the container */
+  min-width: 100%; /* Ensures the image spans the width of the banner */
+  min-height: 100%; /* Ensures the image spans the height of the banner */
+  object-fit: cover; /* Ensures the image fills the container without distortion */
+}
+
+
+
+.video-banner .play-btn {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--radical-red);
-  font-size: 30px;
-  padding: 16px;
-  color: var(--white);
-  border-radius: var(--radius-circle);
-  box-shadow: 0 0 0 0 var(--white_50);
-  z-index: 1;
-  animation: pulse 3s ease infinite;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 var(--white_50); }
-  100% { box-shadow: 0 0 0 20px transparent; }
+.video-banner .play-btn:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
 }
 
-.video-banner::after {
-  inset: 0;
-  background-color: var(--black_30);
+.video-banner .play-btn ion-icon {
+  font-size: 24px;
 }
+
+
 
 
 /*-----------------------------------*\
@@ -727,52 +840,74 @@ body {
 
 /* Partner */
 
+/* General styling */
 .partner-logos {
-  text-align: center;
-  margin: 50px 0;
+  background: #f9f9f9;
+  padding: 20px 0;
+  overflow: hidden; /* Ensures no overflow outside the container */
 }
 
 .section-title {
+  text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Slider container */
 .slider {
-  overflow: hidden;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* Prevents logos from being visible outside the slider */
   white-space: nowrap;
 }
 
-/* Track of the slider */
 .slide-track {
   display: flex;
-  width: calc(250px * 14); /* Adjust according to how many logos you have (250px width) */
-  animation: scroll 40s linear infinite;
+  animation: scroll 30s linear infinite; /* Animates the sliding effect */
 }
 
-/* Individual slides */
 .slide {
-  width: 250px; /* Set the width for each logo */
-  padding: 10px;
+  flex-shrink: 0; /* Prevent shrinking */
+  width: 150px; /* Adjust size as per your requirement */
+  margin: 0 10px; /* Space between logos */
+  transition: transform 0.3s ease-in-out;
 }
 
 .slide img {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  display: block;
 }
 
-/* Scroll animation */
+/* Keyframes for smooth scrolling */
+@keyframes scroll {
+  0% {
+    transform: translateX(0); /* Start position */
+  }
+  100% {
+    transform: translateX(-100%); /* End position, moves left */
+  }
+}
+
+/* Duplicate content to create a seamless loop */
+.slide-track::after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+
+
 @keyframes scroll {
   0% {
       transform: translateX(0);
   }
   100% {
-      transform: translateX(-100%);
+      transform: translateX(calc(-250px * 12)); /* Total width of one loop */
   }
 }
+
 
 /* Mobile responsiveness */
 @media only screen and (max-width: 768px) {
@@ -801,7 +936,7 @@ body {
   #FOOTER
 \*-----------------------------------*/
 
-.footer {
+/**.footer {
   background-repeat: no-repeat;
   background-color: var(--eerie-black-2);
   color: var(--gray-x-11);
@@ -921,13 +1056,13 @@ body {
 
   :is(.course, .blog) .grid-list { grid-template-columns: 1fr; }
 
-
+ }
 
   /**
    * HEADER
    */
 
-  .header .container { max-width: unset; }
+  /**.header .container { max-width: unset; }
 
   .header-actions { gap: 30px; }
 
@@ -961,7 +1096,7 @@ body {
    * FOOTER
    */
 
-  .footer-brand,
+  /**.footer-brand,
   .footer-list:last-child { grid-column: 1 / 3; }
 
   .newsletter-form {
@@ -1000,6 +1135,7 @@ body {
     --fs-2: 3.8rem;
 
   }
+}
 
 
 
@@ -1019,7 +1155,7 @@ body {
    * HEADER
    */
 
-  .header .container { padding-inline: 30px; }
+  /**.header .container { padding-inline: 30px; }
 
   .header .btn {
     display: flex;
@@ -1087,7 +1223,7 @@ body {
    * FOOTER
    */
 
-  .footer-brand,
+  /**.footer-brand,
   .footer-list:last-child { grid-column: auto; }
 
   .newsletter-form .btn { padding-block: 10px; }
@@ -1118,7 +1254,7 @@ body {
     --fs-2: 4.5rem;
 
   }
-
+}
 
 
   /**
@@ -1176,7 +1312,7 @@ body {
    * FOOTER
    */
 
-  .footer .grid-list { grid-template-columns: 1fr 0.6fr 0.6fr 1.2fr; }
+  /**.footer .grid-list { grid-template-columns: 1fr 0.6fr 0.6fr 1.2fr; }
 
 }
 
@@ -1230,7 +1366,7 @@ body {
    * HEADER
    */
 
-  .header-action-btn:last-child,
+ /** .header-action-btn:last-child,
   .navbar .wrapper,
   .overlay { display: none; }
 
@@ -1330,8 +1466,6 @@ body {
   }
 
 }
-
-
 
 
 
